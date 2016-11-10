@@ -7,10 +7,9 @@ from .fixtures import path
 
 class test_book(TestCase):
     def setUp(self):
-        source=path('zips','book37m.zip')
+        source=open(path('zips','book37m.zip'))
         self.arc=Archive(source)
         self.book=self.arc[0]
-        self.book.load()
     def test_title(self):
         assert "Love the Avenger" in self.book.title
     def test_place(self):

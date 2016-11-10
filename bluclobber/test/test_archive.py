@@ -6,7 +6,7 @@ from ..archive import Archive
 
 class test_archive(TestCase):
     def setUp(self):
-        source=path('zips','book37.zip')
+        source=open(path('zips','book37.zip'))
         self.arc=Archive(source)
     def test_books(self):
         assert(self.arc.book_codes.keys()==['000000218', '000000037'])
