@@ -1,8 +1,8 @@
 from unittest import TestCase
 from lxml import etree
 
-from ...model.page import Page
-from ..fixtures import path
+from ..page import Page
+from .fixtures import path
 
 class test_page(TestCase):
     def setUp(self):

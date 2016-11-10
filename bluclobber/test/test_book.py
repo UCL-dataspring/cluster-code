@@ -1,9 +1,9 @@
 from unittest import TestCase
 from lxml import etree
 
-from ...model.archive import Archive
-from ...model.book import Book
-from ..fixtures import path
+from ..archive import Archive
+from ..book import Book
+from .fixtures import path
 
 class test_book(TestCase):
     def setUp(self):

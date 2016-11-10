@@ -4,22 +4,16 @@
 #$ -l h_rt=${wall}
 #$ -l mem=16G
 #$ -N Bluclobber
-#$ -pe openmpi ${processes}
+#$ -pe mpi ${processes}
+#$ -l paid=1
+#$ -ac allow="U"
 #$ -wd ${run_at}
-module unload compilers
-module unload mpi
-module load compilers/gnu/4.6.3
-module load mpi/openmpi/1.6.5/gnu.4.6.3
-module load python/2.7.3
-module load rsd-modules
-module load mpi4py
-module load pyyaml
-module load libxml
-module load libxslt
-module load lxml
+module swap compilers compilers/gnu
+module swap mpi mpi/openmpi/1.10.1/gnu-4.9.2
+module load python2/recommended
 %if subsample:
-gerun /home/${user}/.local/bin/bluclobber ${dest_query} ${corpus} --downsample ${subsample} ${bybook} --outpath ${outpath}
+gerun /home/${user}/.python2local/bin/bluclobber ${dest_query} ${corpus} --downsample ${subsample} ${bybook} --outpath ${outpath}
 
 %else:
-gerun /home/${user}/.local/bin/bluclobber ${dest_query} ${corpus} ${bybook} --outpath ${outpath}
+gerun /home/${user}/.python2local/bin/bluclobber ${dest_query} ${corpus} ${bybook} --outpath ${outpath}
 %endif

@@ -8,15 +8,9 @@ from cStringIO import StringIO
 import logging
 
 class Archive(object):
-    def __init__(self, path):
-        self.path = path
+    def __init__(self, stream):
         self.logger=logging.getLogger('performance')
-        self.logger.info("Opening archive " + path)
-        with open(path) as finfo:
-            self.logger.debug("Opened archive")
-            mmap=StringIO(finfo.read())
-            self.logger.info("Slurped archive")
-            self.zip = zipfile.ZipFile(mmap)
+        self.zip = zipfile.ZipFile(stream)
         self.logger.debug("Examining books in archive")
         self.filenames = [entry.filename for entry in self.zip.infolist()]
         book_pattern = re.compile('([0-9]*)_metadata\.xml')

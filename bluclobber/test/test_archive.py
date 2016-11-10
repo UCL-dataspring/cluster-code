@@ -1,8 +1,8 @@
 from unittest import TestCase
 from lxml import etree
 
-from ...model.archive import Archive
-from ..fixtures import path
+from .fixtures import path
+from ..archive import Archive
 
 class test_archive(TestCase):
     def setUp(self):
