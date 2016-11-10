@@ -9,4 +9,3 @@ env.model="newsrods"
 env.corpus='/rdZone/live/rd003v/CompressedALTO-fromJamesH/CompressedALTO'
 
 env.deploy_to="/home/"+env.user+"/devel/BluclobberSpark"
-env.clone_url="git@github.com:UCL/i_newspaper_rods.git"
