@@ -17,10 +17,6 @@ class Book(object):
         self.logger=logging.getLogger('performance')
         self.code = code
         self.pages=None
-
-    def load(self):
-        if self.pages:
-            return
         self.logger.debug("Loading book metadata")
         self.metadata=self.archive.metadata_file(self.code)
         self.logger.debug("Building book metadata")
@@ -33,7 +29,7 @@ class Book(object):
         self.years=Book.parse_year(self.single_query('//mods:dateIssued/text()'))
         self.publisher=self.single_query('//mods:publisher/text()')
         self.place=self.single_query('//mods:placeTerm/text()')
-        # places often have a year in: 
+        # places often have a year in:
         self.years+=Book.parse_year(self.place)
         self.years=sorted(self.years)
         if self.years:
@@ -93,7 +89,7 @@ class Book(object):
     def strings(self):
         for page, string in self.scan_strings():
             yield string
-    
+
     def words(self):
         for page, word in self.scan_words():
             yield word
@@ -106,7 +102,7 @@ class Book(object):
         for page in self:
             for word in page.strings:
                 yield page, word
-    
+
     def scan_words(self):
         for page in self:
             for word in page.words:
@@ -126,8 +122,7 @@ class Book(object):
                 page, finding = find
                 finds[page].append(finding)
         if finds:
-            return {self.year: [[self.title, self.year, self.place, self.publisher, 
+            return {self.year: [[self.title, self.year, self.place, self.publisher,
                                  [[page.code, page.content, finds] for page,finds in finds.iteritems()]]]}
         else:
             return None
-

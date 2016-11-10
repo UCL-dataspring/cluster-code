@@ -10,7 +10,12 @@ import logging
 class Archive(object):
     def __init__(self, stream):
         self.logger=logging.getLogger('performance')
-        self.zip = zipfile.ZipFile(stream)
+        self.logger.info("Opening archive ")
+
+        self.logger.debug("Opened archive")
+        mmap=StringIO(stream.read())
+        self.logger.info("Slurped archive")
+        self.zip = zipfile.ZipFile(mmap)
         self.logger.debug("Examining books in archive")
         self.filenames = [entry.filename for entry in self.zip.infolist()]
         book_pattern = re.compile('([0-9]*)_metadata\.xml')
